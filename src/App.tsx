@@ -7,12 +7,17 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card";
-import { FaSquareFacebook, FaTwitter } from "react-icons/fa6";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { FaLock, FaSquareFacebook, FaTwitter } from "react-icons/fa6";
 import { TbCardsFilled } from "react-icons/tb";
 import { Checkbox } from "./components/ui/checkbox";
 import { LuArrowRight } from "react-icons/lu";
-import My_input from "./components/my_components_ui/My_input";
+import { IoIosEye, IoIosEyeOff } from "react-icons/io";
+import { useState } from "react";
 function App() {
+    const [password, setPassword] = useState(true);
+    const handlePassword = () => setPassword(!password);
     return (
         <div className="pt-5">
             <Card className="w-[340px] m-auto border-[#D1D5DB] rounded-[12px]">
@@ -54,18 +59,37 @@ function App() {
                                 </h1>
                             </div>
                             <div className="flex flex-col space-y-1.5">
-                                <My_input
-                                    label="Email"
+                                <Label htmlFor="framework">Email</Label>
+                                <Input
+                                    className={
+                                        "rounded-[128px]  border-[#D1D5DB] hover:border-[#06b5d484]"
+                                    }
+                                    placeholder={"Enter your emial"}
                                     type="email"
-                                    placeholder="Enter your email"
                                 />
                             </div>
-                            <div className="flex flex-col space-y-1.5 mt-4">
-                                <My_input
-                                    label="password"
-                                    type="password"
-                                    placeholder="Enter your password"
-                                />
+                            <div className="flex flex-col space-y-1.5 mt-4 mb-10">
+                                <Label htmlFor="framework">password</Label>
+                                <div className="my_password relative">
+                                    <FaLock className="absolute left-3 translate-y-3 text-[#8e8e8e] " />
+                                    <Input
+                                        className={
+                                            "rounded-[128px] absolute w-full px-8 border-[#D1D5DB] hover:border-[#06b5d484]"
+                                        }
+                                        placeholder={"Enter your password"}
+                                        type={password ? "password" : "text"}
+                                    />
+                                    <div
+                                        onClick={handlePassword}
+                                        className="absolute right-2 cursor-pointer text-[#8e8e8e] text-[20px] translate-y-3 "
+                                    >
+                                        {password ? (
+                                            <IoIosEyeOff />
+                                        ) : (
+                                            <IoIosEye />
+                                        )}
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </CardContent>
